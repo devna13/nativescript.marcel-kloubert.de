@@ -582,5 +582,5 @@ function xmlElementToNumber(e: XmlObjects.XElement): number {
         return;
     }
 
-    return parseFloat('' + str);
+    return parseFloat(('' + str).trim());
 }

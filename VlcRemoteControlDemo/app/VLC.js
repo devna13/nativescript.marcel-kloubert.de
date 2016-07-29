@@ -357,6 +357,6 @@ function xmlElementToNumber(e) {
     if (isStringEmpty(str)) {
         return;
     }
-    return parseFloat('' + str);
+    return parseFloat(('' + str).trim());
 }
 //# sourceMappingURL=VLC.js.map
