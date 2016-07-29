@@ -280,6 +280,11 @@ export class Player {
         client.get();
     }
 
+    /**
+     * Gets the status of that player.
+     * 
+     * @param {Function} callback The callback to use.
+     */
     public getStatus(callback: (result: IGetStatusResult) => void) {
         var me = this;
 
@@ -312,7 +317,7 @@ export class Player {
 
                 var currentplidElements = xml.root.elements("currentplid");
                 if (currentplidElements.length > 0) {
-                    var eid = xmlElementToString(currentplidElements[0]);
+                    var eid = currentplidElements[0].value;
                     if (!isStringEmpty(eid)) {
                         callbackResult.entry = eid.trim();
                     }
@@ -320,7 +325,7 @@ export class Player {
 
                 var stateElements = xml.root.elements("state");
                 if (stateElements.length > 0) {
-                    var state = xmlElementToString(stateElements[0]);
+                    var state = stateElements[0].value;
                     if (!isStringEmpty(state)) {
                         var stateValue: PlayerState = null;    
 
@@ -564,7 +569,11 @@ function isStringEmpty(str: string): boolean {
 }
 
 function xmlElementToNumber(e: XmlObjects.XElement): number {
-    var str = xmlElementToString(e);
+    if (TypeUtils.isNullOrUndefined(e)) {
+        return <any>e;
+    }
+    
+    var str = e.value;
     if (TypeUtils.isNullOrUndefined(str)) {
         return <any>str;
     }
@@ -573,20 +582,5 @@ function xmlElementToNumber(e: XmlObjects.XElement): number {
         return;
     }
 
-    return parseFloat(str);
-}
-
-function xmlElementToString(e: XmlObjects.XElement): string {
-    if (TypeUtils.isNullOrUndefined(e)) {
-        return <any>e;
-    }
-
-    var str = '';
-    
-    var nodes = e.nodes();
-    for (var i = 0; i < nodes.length; i++) {
-        str += nodes[i].toString();
-    }
-
-    return str;
+    return parseFloat('' + str);
 }

@@ -108,6 +108,11 @@ var Player = (function () {
         });
         client.get();
     };
+    /**
+     * Gets the status of that player.
+     *
+     * @param {Function} callback The callback to use.
+     */
     Player.prototype.getStatus = function (callback) {
         var me = this;
         var raiseError = function (error) {
@@ -132,14 +137,14 @@ var Player = (function () {
                 }
                 var currentplidElements = xml.root.elements("currentplid");
                 if (currentplidElements.length > 0) {
-                    var eid = xmlElementToString(currentplidElements[0]);
+                    var eid = currentplidElements[0].value;
                     if (!isStringEmpty(eid)) {
                         callbackResult.entry = eid.trim();
                     }
                 }
                 var stateElements = xml.root.elements("state");
                 if (stateElements.length > 0) {
-                    var state = xmlElementToString(stateElements[0]);
+                    var state = stateElements[0].value;
                     if (!isStringEmpty(state)) {
                         var stateValue = null;
                         state = state.toLowerCase().trim();
@@ -342,24 +347,16 @@ function isStringEmpty(str) {
     return '' === str;
 }
 function xmlElementToNumber(e) {
-    var str = xmlElementToString(e);
+    if (TypeUtils.isNullOrUndefined(e)) {
+        return e;
+    }
+    var str = e.value;
     if (TypeUtils.isNullOrUndefined(str)) {
         return str;
     }
     if (isStringEmpty(str)) {
         return;
     }
-    return parseFloat(str);
-}
-function xmlElementToString(e) {
-    if (TypeUtils.isNullOrUndefined(e)) {
-        return e;
-    }
-    var str = '';
-    var nodes = e.nodes();
-    for (var i = 0; i < nodes.length; i++) {
-        str += nodes[i].toString();
-    }
-    return str;
+    return parseFloat('' + str);
 }
 //# sourceMappingURL=VLC.js.map
