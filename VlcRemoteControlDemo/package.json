@@ -12,7 +12,7 @@
   "dependencies": {
     "nativescript-apiclient": "^1.12.7",
     "nativescript-dev-typescript": "^0.3.2",
-    "nativescript-xmlobjects": "^1.1.0",
+    "nativescript-xmlobjects": "^1.1.1",
     "tns-core-modules": "2.1.0"
   },
   "devDependencies": {
