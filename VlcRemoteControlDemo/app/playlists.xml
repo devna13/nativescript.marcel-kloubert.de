@@ -1,0 +1,22 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="VLC Demo >> Playlists"></ActionBar>
+
+  <GridLayout rows="auto,*,auto" id="mjk-maingrid">
+    <Label row="0" col="0"
+           text="Select a playlist:" id="mjk-hint" />
+
+    <ListView row="1" col="0"
+              items="{{ playlists }}" verticalAlignment="stretch">
+
+      <ListView.itemTemplate>
+        <Label className="mjk-playlist-item"
+               text="{{ name }}" tap="openPlaylist" />
+      </ListView.itemTemplate>
+    </ListView>
+
+    <Button row="2" col="0"
+            text="Refesh list"
+            horizontalAlignment="stretch"
+            tap="{{ refreshList }}" />
+  </GridLayout>
+</Page>

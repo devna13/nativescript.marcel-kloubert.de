@@ -1,0 +1,17 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="VLC Demo"></ActionBar>
+
+  <StackLayout verticalAlignment="center">
+    <Label text="Host" />
+    <TextField text="{{ host }}" />
+
+    <Label text="Port" />
+    <TextField text="{{ port }}" />
+
+    <Label text="Password" />
+    <TextField text="{{ password }}" secure="true" />
+
+    <Button text="Login"
+            tap="{{ loadPlaylists }}" />
+  </StackLayout>
+</Page>

@@ -1,0 +1,37 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="{{ 'VLC Demo :: ' + list.name }}"></ActionBar>
+
+  <GridLayout rows="auto,*,auto" id="mjk-maingrid">
+    <Label row="0" col="0"
+           text="Select an entry to play:" id="mjk-hint" />
+
+    <ListView row="1" col="0"
+              items="{{ list.entries }}">
+      <ListView.itemTemplate>
+        <Label className="mjk-playlist-entry"
+               text="{{ name }}" tap="playEntry" />
+      </ListView.itemTemplate>
+    </ListView>
+
+    <GridLayout row="2" col="0"
+                rows="auto" columns="*,auto">
+      
+      <Label text="{{ status }}"
+             horizontalAlignment="stretch" verticalAlignment="stretch"
+             textWrap="true"
+             row="0" col="0" />
+
+      <GridLayout row="0" col="1"
+                  rows="auto" columns="auto,auto">>
+        
+        <Image row="0" col="0"
+               tap="{{ playOrPause }}"
+               src="{{ isPaused ? '~/img/pause.png' : '~/img/play.png' }}" />
+
+        <Image row="0" col="1"
+               tap="{{ stop }}"
+               src="~/img/stop.png" />
+      </GridLayout>
+    </GridLayout>
+  </GridLayout>
+</Page>
