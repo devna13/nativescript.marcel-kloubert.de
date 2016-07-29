@@ -1,3 +1,4 @@
 /VlcRemoteControlDemo/node_modules
 /VlcRemoteControlDemo/platforms
 /VlcRemoteControlDemo/app/*.map
+/pushall.sh
