@@ -1,0 +1,39 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <ActionBar title="LINQ demo with weather data"></ActionBar>
+  
+  <GridLayout rows="auto,auto,*,auto" columns="*">
+    <StackLayout row="0" col="0">
+      <Label text="API key:" />
+      <TextField text="{{ apiKey }} " />
+
+      <Label text="ZIP code:" />
+      <TextField text="{{ zipCode }} " />
+
+      <Label text="Country code:" />
+      <TextField text="{{ country }} " />
+    </StackLayout>
+
+    <StackLayout row="1" col="0">
+      <Label text="Location:" />
+      <Label text="{{ location ? location.name + ' (' + location.lat + ', ' + location.lon + ')' : '-----' }}" />
+    </StackLayout>
+
+    <ListView row="2" col="0"
+              items="{{ forecast }}">
+      <ListView.itemTemplate>
+        <StackLayout>
+          <Label text="{{ 'Time: ' + time }}"
+                 textWrap="true" />
+          <Label text="{{ 'Temperature: Between ' + temperature.min + ' K and ' + temperature.max + ' K' }}"
+                 textWrap="true" />
+          <Label text="{{ 'Weather: ' + weather[0] }}"
+                 textWrap="true" />
+        </StackLayout>
+      </ListView.itemTemplate>
+    </ListView>
+
+    <Button row="3" col="0"
+            horizontalAlignment="stretch"
+            tap="{{ loadForecast }}" text="Load data..." />
+  </GridLayout>
+</Page>

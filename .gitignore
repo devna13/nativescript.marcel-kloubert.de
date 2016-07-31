@@ -2,3 +2,6 @@
 /VlcRemoteControlDemo/platforms
 /VlcRemoteControlDemo/app/*.map
 /pushall.sh
+/WeatherDemo/platforms
+/WeatherDemo/node_modules
+/WeatherDemo/app/*.map
