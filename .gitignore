@@ -5,3 +5,6 @@
 /WeatherDemo/platforms
 /WeatherDemo/node_modules
 /WeatherDemo/app/*.map
+/DropBoxDemo/platforms
+/DropBoxDemo/node_modules
+/DropBoxDemo/app/*.map

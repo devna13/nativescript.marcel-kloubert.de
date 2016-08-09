@@ -1,0 +1,68 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+  <GridLayout rows="auto,*,auto" columns="*"
+              margin="8">
+    <GridLayout row="0" col="0"
+                rows="auto,auto" columns="auto,*">
+
+      <Label row="0" col="0"
+             text="Access token:"
+             verticalAlignment="middle" horizontalAlignment="left" />
+      <TextField row="0" col="1"
+                 text="{{ token }}"
+                 verticalAlignment="middle" horizontalAlignment="stretch" />
+
+      <Label row="1" col="0"
+             text="Path:"
+             verticalAlignment="middle" horizontalAlignment="left" />
+      <GridLayout row="1" col="1"
+                  rows="auto" columns="*,auto">
+        
+        <TextField row="0" col="0"
+                   text="{{ path }}"
+                   verticalAlignment="middle" horizontalAlignment="stretch" />
+        <Button row="0" col="1"
+                text="Refresh"
+                padding="8"
+                style="font-size: 12"
+                tap="{{ refresh }}" />
+      </GridLayout>
+    </GridLayout>
+
+    <ListView row="1" col="0"
+              items="{{ entries }}"
+              style="margin-top: 16"
+              visibility="{{ isRefreshing ? 'collapsed' : 'visible' }}">
+
+      <ListView.itemTemplate>
+        <GridLayout cssClass="mjk-folderEntry"
+                    rows="auto" columns="64,*,auto"
+                    tap="{{ onTap }}">
+          
+          <Image row="0" col="0"
+                 width="48" height="48"
+                 verticalAlignment="middle" horizontalAlignment="center"
+                 src="{{ 0 == type ? '~/img/folder.png' : '~/img/file.png' }}" />
+
+          <Label row="0" col="1"
+                 verticalAlignment="middle" horizontalAlignment="left"
+                 text="{{ name }}" />
+
+          <Button row="0" col="2"
+                  text="DEL"
+                  tap="{{ askBeforeDelete }}" />
+        </GridLayout>
+      </ListView.itemTemplate>
+    </ListView>
+
+    <ActivityIndicator row="1" col="0"
+                       busy="{{ isRefreshing }}"
+                       width="64" height="64"
+                       verticalAlignment="middle" horizontalAlignment="center"
+                       visibility="{{ !isRefreshing ? 'collapsed' : 'visible' }}" />
+
+    <Button row="2" col="0"
+            text="Upload file"
+            verticalAlignment="middle" horizontalAlignment="stretch"
+            tap="{{ upload }}" />
+  </GridLayout>
+</Page>
